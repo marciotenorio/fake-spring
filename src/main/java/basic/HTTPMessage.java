@@ -1,14 +1,18 @@
 package basic;
 
+import com.google.gson.JsonObject;
+
+import java.util.Map;
+
 public class HTTPMessage {
 
     private String url;
 
     private String verb;
 
-    private String headers;
+    private Map<String, String> headers;
 
-    private String body;
+    private JsonObject body;
 
     private String statusCode;
 
@@ -29,19 +33,19 @@ public class HTTPMessage {
         this.verb = verb;
     }
 
-    public String getHeaders() {
+    public Map<String, String> getHeaders() {
         return headers;
     }
 
-    public void setHeaders(String headers) {
+    public void setHeaders(Map<String, String> headers) {
         this.headers = headers;
     }
 
-    public String getBody() {
+    public JsonObject getBody() {
         return body;
     }
 
-    public void setBody(String body) {
+    public void setBody(JsonObject body) {
         this.body = body;
     }
 

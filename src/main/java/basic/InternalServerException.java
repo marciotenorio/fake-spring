@@ -1,5 +1,7 @@
 package basic;
 
-public class InternalServerException extends RuntimeException{
-
+public class InternalServerException extends Exception {
+    public InternalServerException(String errorMessage){
+        super(errorMessage);
+    }
 }

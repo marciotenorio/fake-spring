@@ -13,19 +13,18 @@ public class ServerRequestHandler {
 
     private Invoker invoker;
 
-    private Marshaller marshaller;
+    private TCPMarshaller TCPMarshaller;
 
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
     public ServerRequestHandler() {
         this.invoker = new Invoker();
-        this.marshaller = new Marshaller();
+        this.TCPMarshaller = new TCPMarshaller();
     }
 
-    public ServerRequestHandler(int port) {
-        this();
+    public void listen(int port) {
         try{
-            tcpServerHandler = new TCPServerHandler(port, invoker, marshaller);
+            tcpServerHandler = new TCPServerHandler(port, invoker, TCPMarshaller);
         }catch (IOException e){
             logger.warning("Error to create new network handler.");
             e.printStackTrace();

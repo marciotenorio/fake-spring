@@ -19,7 +19,7 @@ public class FakeSpring {
 
     public void listen(int port){
         logger.info("Listen in " + port  + "...");
-        serverRequestHandler = new ServerRequestHandler(port);
+        serverRequestHandler.listen(port);
     }
 
     public static void main(String[] args) {

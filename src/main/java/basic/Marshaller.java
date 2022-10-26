@@ -1,18 +1,10 @@
 package basic;
 
-import utils.StringUtils;
+import com.google.gson.JsonObject;
 
-import java.net.Socket;
-import java.util.logging.Logger;
+public interface Marshaller {
 
-public class Marshaller {
+    public HTTPMessage deMarshaller(byte[] data);
 
-    public HTTPMessage deMarshaller(String message) {
-        HTTPMessage httpMessage = new HTTPMessage();
-
-        httpMessage.setVerb(StringUtils.getVerb(message));
-        httpMessage.setUrl(StringUtils.getPath(message));
-
-        return httpMessage;
-    }
+    public byte[] marshaller(JsonObject data);
 }

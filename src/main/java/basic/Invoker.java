@@ -8,30 +8,55 @@ import java.lang.reflect.Method;
 
 public class Invoker{
 
+    private TCPMarshaller tcpMarshaller;
+
     private final IdentificationRemoteObject identificationRemoteObject;
 
     public Invoker() {
-        this.identificationRemoteObject = new IdentificationRemoteObject();
+        tcpMarshaller = new TCPMarshaller();
+        identificationRemoteObject = new IdentificationRemoteObject();
     }
 
     public void mapAsRemoteObject(Object obj) {
         identificationRemoteObject.mapAsRemoteObject(obj);
     }
 
-    public HTTPMessage invoke(HTTPMessage httpMessage) {
-        JsonObject json = new JsonObject();
+    public HTTPMessage invoke(byte[] data) {
+        JsonObject json;
+        HTTPMessage response = new HTTPMessage();
+
+        HTTPMessage httpMessage = tcpMarshaller.deMarshaller(data);
+
+        if(httpMessage.getVerb() == null){
+            response.setStatusCode(HTTPStatus.NOT_FOUND);
+            return response;
+        }
+
+
         try{
-            Method method = identificationRemoteObject.getInvocationMethod(httpMessage.getUrl());
+            Method method = identificationRemoteObject.getInvocationMethod(httpMessage);
 
-            Class<?> clazz = method.getDeclaringClass();
-            Object instance = clazz.getDeclaredConstructor().newInstance();
+            if(method != null) {
 
-            json = (JsonObject) method.invoke(instance);
-        }catch (RuntimeException | IllegalAccessException | InvocationTargetException | InstantiationException | NoSuchMethodException e){
+                Class<?> clazz = method.getDeclaringClass();
+                Object instance = clazz.getDeclaredConstructor().newInstance();
+
+                json = (JsonObject) method.invoke(instance, httpMessage.getBody());
+
+                response = new HTTPMessage();
+                response.setBody(json);
+                response.setStatusCode(HTTPStatus.OK);
+                return response;
+            }
+        }catch (RuntimeException
+                | NoSuchMethodException
+                | IllegalAccessException
+                | InvocationTargetException
+                | InstantiationException e){
             e.printStackTrace();
         }
 
-        System.out.println(json);
-        return new HTTPMessage();
+        response.setStatusCode(HTTPStatus.NOT_FOUND);
+        return response;
     }
 }

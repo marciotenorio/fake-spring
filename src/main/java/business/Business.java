@@ -1,6 +1,7 @@
 package business;
 
 import annotation.Get;
+import annotation.Post;
 import annotation.Put;
 import annotation.RequestMapping;
 import com.google.gson.JsonElement;
@@ -9,9 +10,8 @@ import com.google.gson.JsonObject;
 @RequestMapping(route = "/business")
 public class Business {
 
-    @Get(route = "/myfirstroute")
-    public JsonObject doSomething(){
-        JsonObject jsonObject = new JsonObject();
+    @Post(route = "/myfirstroute")
+    public JsonObject doSomething(JsonObject jsonObject){
         jsonObject.addProperty("hello", "world");
         return jsonObject;
     }

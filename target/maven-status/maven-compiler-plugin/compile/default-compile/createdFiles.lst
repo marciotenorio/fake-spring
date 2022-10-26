@@ -1,0 +1,13 @@
+annotation\Get.class
+protocol\TCPServerHandler.class
+annotation\Put.class
+basic\HTTPMessage.class
+basic\ServerRequestHandler.class
+identification\IdentificationRemoteObject.class
+annotation\RequestMapping.class
+main\Main.class
+basic\Marshaller.class
+FakeSpring.class
+basic\Invoker.class
+annotation\Post.class
+annotation\Delete.class
