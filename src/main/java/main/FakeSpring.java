@@ -2,12 +2,16 @@ package main;
 
 import basic.ServerRequestHandler;
 import business.Business;
+import business.FakeLogger;
+import extension.ExtensionHandler;
 
 import java.util.logging.Logger;
 
 public class FakeSpring {
 
     private ServerRequestHandler serverRequestHandler;
+
+    private ExtensionHandler extensionHandler;
 
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
@@ -19,6 +23,10 @@ public class FakeSpring {
         serverRequestHandler.mapAsRemoteObject(obj);
     }
 
+    public void addExtension(Object object){
+        serverRequestHandler.addExtension(object);
+    }
+
     public void listen(int port){
         logger.info("Listen in " + port  + "...");
         serverRequestHandler.listen(port);
@@ -27,10 +35,12 @@ public class FakeSpring {
     public static void main(String[] args) {
 
         FakeSpring fakeSpring = new FakeSpring();
-
         Business business = new Business();
+        FakeLogger fakeLogger = new FakeLogger();
 
         fakeSpring.mapAsRemoteObject(business);
+        fakeSpring.addExtension(fakeLogger);
+
         fakeSpring.listen(Integer.parseInt(args[0]));
 
     }

@@ -22,17 +22,14 @@ public class Invoker{
         identificationRemoteObject.mapAsRemoteObject(obj);
     }
 
-    public HTTPMessage invoke(byte[] data) {
+    public HTTPMessage invoke(HTTPMessage httpMessage) {
         JsonObject json;
         HTTPMessage response = new HTTPMessage();
-
-        HTTPMessage httpMessage = tcpMarshaller.deMarshaller(data);
 
         if(httpMessage.getVerb() == null){
             response.setStatusCode(HTTPStatus.NOT_FOUND);
             return response;
         }
-
 
         try{
             Method method = identificationRemoteObject.getInvocationMethod(httpMessage);

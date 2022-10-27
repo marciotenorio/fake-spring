@@ -27,7 +27,7 @@ public class TCPMarshaller implements Marshaller {
         httpMessage.setVerb(startLine[0]);
         httpMessage.setUrl(startLine[1]);
 
-        //Verify verb, if verb == GET dont have body and consequence don't have content-length header
+        //Verify header to parse body or not
         if(httpMessage.getVerb().equals(HTTPVerbs.GET.toUpperCase())){
             return httpMessage;
         }

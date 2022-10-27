@@ -6,5 +6,5 @@ public class HTTPUtils {
 
     public static final String HEADER_APPLICATION_JSON = "Content-Type: application/json";
 
-    public static final String HEADER_CONTENT_LENGTH = "Content-Length: ";
+    public static final String HEADER_CONTENT_LENGTH = "Content-Length";
 }
