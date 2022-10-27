@@ -24,4 +24,11 @@ public class Business {
     public void aposkd(){
         System.out.println("OI");
     }
+
+    @Get(route = "/find")
+    public JsonObject colocandoMusica(){
+        JsonObject json = new JsonObject();
+        json.addProperty("musica", "hehe boy");
+        return json;
+    }
 }

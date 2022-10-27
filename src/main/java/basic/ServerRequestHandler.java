@@ -1,6 +1,7 @@
 package basic;
 
-import protocol.TCPServerHandler;
+import basic.protocol.tcp.TCPMarshaller;
+import basic.protocol.tcp.TCPServerHandler;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -13,7 +14,7 @@ public class ServerRequestHandler {
 
     private Invoker invoker;
 
-    private TCPMarshaller TCPMarshaller;
+    private basic.protocol.tcp.TCPMarshaller TCPMarshaller;
 
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 

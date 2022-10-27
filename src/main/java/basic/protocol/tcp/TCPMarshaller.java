@@ -1,5 +1,8 @@
-package basic;
+package basic.protocol.tcp;
 
+import basic.HTTPMessage;
+import basic.HTTPVerbs;
+import basic.Marshaller;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import utils.HTTPUtils;
@@ -9,7 +12,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class TCPMarshaller implements Marshaller{
+public class TCPMarshaller implements Marshaller {
     @Override
     public HTTPMessage deMarshaller(byte[] data) {
         String parseData = new String(data, StandardCharsets.UTF_8).trim();
@@ -23,6 +26,11 @@ public class TCPMarshaller implements Marshaller{
         String[] startLine = splitData[0].split(" ");
         httpMessage.setVerb(startLine[0]);
         httpMessage.setUrl(startLine[1]);
+
+        //Verify verb, if verb == GET dont have body and consequence don't have content-length header
+        if(httpMessage.getVerb().equals(HTTPVerbs.GET.toUpperCase())){
+            return httpMessage;
+        }
 
         //Get the index of last header
         int lastHeader = -1;

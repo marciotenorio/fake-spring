@@ -1,5 +1,6 @@
 package basic;
 
+import basic.protocol.tcp.TCPMarshaller;
 import com.google.gson.JsonObject;
 import identification.IdentificationRemoteObject;
 
@@ -41,7 +42,12 @@ public class Invoker{
                 Class<?> clazz = method.getDeclaringClass();
                 Object instance = clazz.getDeclaredConstructor().newInstance();
 
-                json = (JsonObject) method.invoke(instance, httpMessage.getBody());
+                if(httpMessage.getBody() == null){
+                    json = (JsonObject) method.invoke(instance);
+                }
+                else{
+                    json = (JsonObject) method.invoke(instance, httpMessage.getBody());
+                }
 
                 response = new HTTPMessage();
                 response.setBody(json);
@@ -53,6 +59,7 @@ public class Invoker{
                 | IllegalAccessException
                 | InvocationTargetException
                 | InstantiationException e){
+            //Put stacktrace as response body
             e.printStackTrace();
         }
 
