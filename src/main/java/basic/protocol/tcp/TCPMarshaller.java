@@ -16,7 +16,6 @@ public class TCPMarshaller implements Marshaller {
     @Override
     public HTTPMessage deMarshaller(byte[] data) {
         String parseData = new String(data, StandardCharsets.UTF_8).trim();
-
         if(parseData.length() == 0){
             return new HTTPMessage();
         }
@@ -26,11 +25,6 @@ public class TCPMarshaller implements Marshaller {
         String[] startLine = splitData[0].split(" ");
         httpMessage.setVerb(startLine[0]);
         httpMessage.setUrl(startLine[1]);
-
-        //Verify header to parse body or not
-        if(httpMessage.getVerb().equals(HTTPVerbs.GET.toUpperCase())){
-            return httpMessage;
-        }
 
         //Get the index of last header
         int lastHeader = -1;

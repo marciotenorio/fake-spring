@@ -39,7 +39,7 @@ public class ExtensionHandler {
         }
     }
 
-    //Inspired in Vue Hooks (nomenclature)
+    //Inspired in Vue Hooks
     public void beforeRemoteInvoke(HTTPMessage httpMessage){
         hook("beforeRemoteInvoke", httpMessage);
     }

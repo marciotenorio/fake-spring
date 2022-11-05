@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 public class ServerRequestHandler {
 
     //This guy can be an interface to work um generic protocols
-    //Now i don't receive them, but using interfaces i can receive.
     private TCPServerHandler tcpServerHandler;
 
     private Invoker invoker;
