@@ -1,6 +1,6 @@
 # Fake Spring
 
-Um middleware que implementa alguns dos [Remoting Patterns](https://voelter.de/data/presentations/remotingPatterns.pdf) dos autores Uwe Zdun, Markus Völter e , Michael Kircher, com o objetivo de entender algumas abordagens consolidadas para a criação de frameworks modernos como [Spring](https://spring.io/) e vislumbar como as coisas funcionam debaixo do capô!
+Um middleware que implementa alguns dos [Remoting Patterns](https://voelter.de/data/presentations/remotingPatterns.pdf) dos autores Uwe Zdun, Markus Völter e Michael Kircher, com o objetivo de entender algumas abordagens consolidadas para a criação de frameworks modernos como [Spring](https://spring.io/) e vislumbar como as coisas funcionam debaixo do capô!
 
 Projeto feito para a 2º unidade da disciplina de Programação Distribuída, ministrada pelo Prof. Dr. Nélio Alessandro Azevedo Cacho.
  
